@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Women's Day 8/3 - Phiên bản Yêu Thương Cao Cấp</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Happy Women's Day 8/3 - To Ngọc Anh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Bảng màu cao cấp hơn */
-            --premium-rose-gold: #e8c6c9;
-            --premium-deep-rose: #b18588;
-            --soft-beading: #f7f2ed;
-            --text-dark: #3a3a3a;
-            --accent-gold: #c6ac71; /* Chi tiết mạ vàng */
+            /* Bảng màu Pastel cực kỳ nhẹ nhàng, kẹo ngọt */
+            --pastel-bg: #fdf2f4;
+            --pastel-gradient-1: #ffcfd2;
+            --pastel-gradient-2: #f1c0e8;
+            --text-main: #594a4e;
+            --text-light: #8e7c80;
+            --card-bg: #ffffff;
+            --accent-pink: #f79cba; /* Màu hồng nhấn nhá mềm mại */
         }
 
         body, html {
@@ -20,13 +22,13 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--premium-rose-gold);
+            font-family: 'Quicksand', sans-serif; /* Phông chữ chính hiện đại, bo tròn */
+            background-color: var(--pastel-bg);
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--text-dark);
+            color: var(--text-main);
             position: relative;
         }
 
@@ -37,11 +39,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Cho phép chạm xuyên qua */
-            z-index: 5; /* Nằm giữa cover và card */
+            pointer-events: none;
+            z-index: 5;
         }
 
-        /* Định nghĩa một cánh hoa */
         .petal {
             position: absolute;
             background-size: contain;
@@ -60,13 +61,11 @@
                 opacity: 1;
             }
             100% {
-                /* Cho phép một góc rơi ngẫu nhiên nhỏ */
                 transform: translate3d(calc(100px - Math.random() * 200px), 100vh, 0) rotate(720deg);
                 opacity: 0;
             }
         }
 
-        /* Nâng cấp hiệu ứng bìa mở */
         #envelope-wrapper {
             position: relative;
             width: 90%;
@@ -79,15 +78,16 @@
         #cover {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, var(--premium-deep-rose) 0%, var(--premium-rose-gold) 100%);
-            z-index: 20; /* Trên cánh hoa và card */
+            /* Gradient pastel chuyển từ hồng đào sang tím nhẹ */
+            background: linear-gradient(135deg, var(--pastel-gradient-1) 0%, var(--pastel-gradient-2) 100%);
+            z-index: 20;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border: 2px solid var(--accent-gold); /* Viền vàng kim */
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(241, 192, 232, 0.4); /* Đổ bóng màu pastel */
+            border: 4px solid rgba(255, 255, 255, 0.6); /* Viền trắng trong suốt */
             transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.8s ease;
         }
 
@@ -98,54 +98,54 @@
         }
 
         #cover h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Dancing Script', cursive; /* Phông chữ viết tay điệu đà */
             color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            font-size: 2.5rem;
-            margin: 0 0 20px 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            font-size: 3.5rem; /* To hơn một chút cho đẹp */
+            margin: 0 0 30px 0;
+            letter-spacing: 1px;
         }
 
-        /* Nâng cấp nút */
         .btn-open {
             background: white;
-            color: var(--premium-deep-rose);
-            border: 2px solid var(--accent-gold);
-            padding: 18px 40px;
-            border-radius: 40px;
-            font-size: 1.2rem;
+            color: var(--accent-pink);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 50px; /* Bo tròn hoàn toàn */
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.15rem;
             cursor: pointer;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            animation: premiumBounce 2s infinite;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(247, 156, 186, 0.3);
+            animation: pastelBounce 2s infinite;
             transition: all 0.3s ease;
         }
 
         .btn-open:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 12px 25px rgba(247, 156, 186, 0.4);
+            color: #e88ba9;
         }
 
-        @keyframes premiumBounce {
+        @keyframes pastelBounce {
             0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
             40% {transform: translateY(-8px);}
             60% {transform: translateY(-4px);}
         }
 
-        /* Nâng cấp thiệp */
         .card {
             width: 100%;
             height: 100%;
-            background: var(--soft-beading);
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(241, 192, 232, 0.3);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             transform: scale(0.9) translateY(0);
             opacity: 0;
             transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s ease 0.3s;
-            z-index: 10; /* Dưới cover */
-            border: 1px solid var(--accent-gold); /* Viền mỏng vàng kim */
+            z-index: 10;
         }
 
         .card.open {
@@ -155,12 +155,12 @@
 
         .gallery-container {
             width: 100%;
-            height: 70%;
+            height: 65%; /* Giảm một chút để chừa không gian cho text */
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
-            z-index: 11; /* Đảm bảo nằm trên card background */
+            z-index: 11;
             cursor: grab;
         }
 
@@ -179,16 +179,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease; /* Hiệu ứng vuốt nhẹ */
+            transition: transform 0.5s ease;
             user-select: none;
             pointer-events: none;
         }
 
-        /* Nâng cấp phần content */
         .content {
-            padding: 25px;
+            padding: 25px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -196,40 +195,40 @@
             position: relative;
         }
 
-        /* Thêm một chi tiết mạ vàng phân cách */
         .content::before {
             content: '';
             position: absolute;
             top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background-color: var(--accent-gold);
+            width: 50px;
+            height: 4px;
+            border-radius: 4px;
+            background-color: var(--pastel-gradient-1); /* Nét nhấn màu pastel */
         }
 
         .content h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--premium-deep-rose);
-            margin: 0 0 15px 0;
-            font-size: 1.8rem;
-            font-style: italic;
+            font-family: 'Dancing Script', cursive;
+            color: var(--accent-pink);
+            margin: 10px 0 10px 0;
+            font-size: 2.2rem;
+            font-weight: 700;
         }
 
         .content p {
-            color: var(--text-dark);
-            font-size: 1rem;
-            line-height: 1.6;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.5;
             margin: 0;
-            font-weight: 300;
+            font-weight: 500;
         }
 
         .instruction {
-            font-size: 0.85rem;
-            color: var(--premium-deep-rose);
+            font-size: 0.9rem;
+            color: var(--text-light);
             margin-top: 15px;
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -269,10 +268,9 @@
         }
 
         const petalsContainer = document.getElementById('petals-container');
-        const totalPetals = 40; // Số lượng cánh hoa tối đa cùng lúc
-        const petalEmojis = ['🌸', '🌷', '🌹', '💖']; // Có thể thay bằng ảnh PNG nhỏ
+        const totalPetals = 40; 
+        const petalEmojis = ['🌸', '🌷', '🎀', '💖', '✨']; // Thêm một vài icon lấp lánh nơ pastel
 
-        // Hàm tạo một cánh hoa ngẫu nhiên
         function createPetal() {
             const petal = document.createElement('div');
             petal.classList.add('petal');
@@ -280,42 +278,34 @@
             const emoji = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
             petal.textContent = emoji;
 
-            // Cài đặt ngẫu nhiên: kích thước, vị trí, thời gian rơi
-            const size = Math.random() * 20 + 10; // 10px to 30px
+            const size = Math.random() * 20 + 10; 
             petal.style.fontSize = `${size}px`;
             petal.style.left = `${Math.random() * 100}%`;
-            const fallDuration = Math.random() * 5 + 5; // 5s to 10s
+            const fallDuration = Math.random() * 5 + 5; 
             petal.style.animationDuration = `${fallDuration}s`;
-            petal.style.opacity = Math.random() * 0.5 + 0.3; // 0.3 to 0.8
+            petal.style.opacity = Math.random() * 0.5 + 0.3; 
             
-            // Thêm góc xoay ngẫu nhiên
             const randomRotate = Math.random() * 360;
             petal.style.transform += `rotate(${randomRotate}deg)`;
 
             petalsContainer.appendChild(petal);
 
-            // Xóa cánh hoa khi animation kết thúc
             petal.addEventListener('animationend', function() {
                 petal.remove();
             });
         }
 
-        // Hàm bắt đầu hiệu ứng rơi cánh hoa liên tục
         function startPetalFall() {
-            // Tạo một vài cánh hoa ngay lập tức để cảm nhận hiệu ứng
             for (let i = 0; i < 10; i++) {
                 createPetal();
             }
-
-            // Liên tục tạo cánh hoa mới
             setInterval(() => {
                 if (petalsContainer.childElementCount < totalPetals) {
                     createPetal();
                 }
-            }, 300); // Mỗi 300ms tạo một cánh
+            }, 300); 
         }
 
-        // Thêm hiệu ứng tương tác nhẹ khi kéo chuột (mô phỏng vuốt)
         const gallery = document.getElementById('gallery');
         let isDragging = false;
         let startX;
@@ -342,10 +332,9 @@
             if (!isDragging) return;
             e.preventDefault();
             const x = e.pageX - gallery.offsetLeft;
-            const walk = (x - startX) * 2; // Tốc độ cuộn
+            const walk = (x - startX) * 2; 
             gallery.scrollLeft = scrollLeft - walk;
         });
-
     </script>
 </body>
 </html>
