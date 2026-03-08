@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Women's Day 8/3</title>
+    <style>
+        :root {
+            --primary-pink: #ffb7c5;
+            --soft-white: #fff9f9;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fce4ec;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Hiệu ứng phong bì mở ra */
+        #envelope-wrapper {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            height: 600px;
+            perspective: 1000px;
+            transition: transform 0.8s ease;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            background: var(--soft-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card.open {
+            transform: translateY(-20px);
+        }
+
+        /* Gallery dạng trượt (Swipe) giống iPhone */
+        .gallery-container {
+            width: 100%;
+            height: 70%;
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Hide scrollbar */
+        }
+
+        .gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            flex-grow: 1;
+        }
+
+        h2 {
+            color: #d81b60;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .btn-open {
+            background: #ff80ab;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .instruction {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* Overlay khi chưa mở */
+        #cover {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #ffc1e3 0%, #ff80ab 100%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            transition: transform 0.8s ease, opacity 0.5s ease;
+        }
+
+        #cover.hidden {
+            transform: translateY(-100%) rotateX(20deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="envelope-wrapper">
+        <div id="cover">
+            <h1 style="color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.1);">8 tháng 3</h1>
+            <button class="btn-open" onclick="openCard()">Chạm để mở</button>
+        </div>
+
+        <div class="card" id="mainCard">
+            <div class="gallery-container">
+                <div class="slide"><img src="anh1.jpg" alt="Ảnh 1"></div>
+                <div class="slide"><img src="anh2.jpg" alt="Ảnh 2"></div>
+                <div class="slide"><img src="anh3.jpg" alt="Ảnh 3"></div>
+                <div class="slide"><img src="anh4.jpg" alt="Ảnh 4"></div>
+            </div>
+            
+            <div class="content">
+                <h2>Happy Women's Day</h2>
+                <p>Nhân ngày 8/3 chúc em luôn xinh đẹp, thuận lợi trong công việc và luôn vui vẻ trong cuộc sống nha ❤️</p>
+                <div class="instruction">← Vuốt sang để xem thêm ảnh →</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCard() {
+            document.getElementById('cover').classList.add('hidden');
+            document.getElementById('mainCard').classList.add('open');
+        }
+    </script>
+</body>
+</html>
