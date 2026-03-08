@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Women's Day 8/3</title>
+    <title>Happy Women's Day 8/3 - Phiên bản Yêu Thương Cao Cấp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-pink: #ffb7c5;
-            --soft-white: #fff9f9;
+            /* Bảng màu cao cấp hơn */
+            --premium-rose-gold: #e8c6c9;
+            --premium-deep-rose: #b18588;
+            --soft-beading: #f7f2ed;
+            --text-dark: #3a3a3a;
+            --accent-gold: #c6ac71; /* Chi tiết mạ vàng */
         }
 
         body, html {
@@ -15,49 +20,148 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fce4ec;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--premium-rose-gold);
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: var(--text-dark);
+            position: relative;
         }
 
-        /* Hiệu ứng phong bì mở ra */
+        /* Container cho cánh hoa rơi */
+        #petals-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Cho phép chạm xuyên qua */
+            z-index: 5; /* Nằm giữa cover và card */
+        }
+
+        /* Định nghĩa một cánh hoa */
+        .petal {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            animation: petalFall linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translate3d(0, -10px, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                /* Cho phép một góc rơi ngẫu nhiên nhỏ */
+                transform: translate3d(calc(100px - Math.random() * 200px), 100vh, 0) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Nâng cấp hiệu ứng bìa mở */
         #envelope-wrapper {
             position: relative;
             width: 90%;
             max-width: 400px;
             height: 600px;
-            perspective: 1000px;
-            transition: transform 0.8s ease;
+            perspective: 1200px;
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
+        #cover {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--premium-deep-rose) 0%, var(--premium-rose-gold) 100%);
+            z-index: 20; /* Trên cánh hoa và card */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 2px solid var(--accent-gold); /* Viền vàng kim */
+            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.8s ease;
+        }
+
+        #cover.hidden {
+            transform: translateY(-120%) rotateX(45deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #cover h1 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            font-size: 2.5rem;
+            margin: 0 0 20px 0;
+        }
+
+        /* Nâng cấp nút */
+        .btn-open {
+            background: white;
+            color: var(--premium-deep-rose);
+            border: 2px solid var(--accent-gold);
+            padding: 18px 40px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: premiumBounce 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .btn-open:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        @keyframes premiumBounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-8px);}
+            60% {transform: translateY(-4px);}
+        }
+
+        /* Nâng cấp thiệp */
         .card {
             width: 100%;
             height: 100%;
-            background: var(--soft-white);
+            background: var(--soft-beading);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transform: translateY(0);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0.9) translateY(0);
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s ease 0.3s;
+            z-index: 10; /* Dưới cover */
+            border: 1px solid var(--accent-gold); /* Viền mỏng vàng kim */
         }
 
         .card.open {
-            transform: translateY(-20px);
+            transform: scale(1) translateY(0);
+            opacity: 1;
         }
 
-        /* Gallery dạng trượt (Swipe) giống iPhone */
         .gallery-container {
             width: 100%;
             height: 70%;
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Hide scrollbar */
+            scrollbar-width: none;
+            z-index: 11; /* Đảm bảo nằm trên card background */
+            cursor: grab;
         }
 
         .gallery-container::-webkit-scrollbar {
@@ -75,93 +179,82 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .content {
-            padding: 20px;
-            text-align: center;
-            background: white;
-            flex-grow: 1;
-        }
-
-        h2 {
-            color: #d81b60;
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        p {
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        .btn-open {
-            background: #ff80ab;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        .instruction {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 10px;
-        }
-
-        /* Overlay khi chưa mở */
-        #cover {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #ffc1e3 0%, #ff80ab 100%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 20px;
-            transition: transform 0.8s ease, opacity 0.5s ease;
-        }
-
-        #cover.hidden {
-            transform: translateY(-100%) rotateX(20deg);
-            opacity: 0;
+            transition: transform 0.5s ease; /* Hiệu ứng vuốt nhẹ */
+            user-select: none;
             pointer-events: none;
         }
 
+        /* Nâng cấp phần content */
+        .content {
+            padding: 25px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Thêm một chi tiết mạ vàng phân cách */
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-gold);
+        }
+
+        .content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--premium-deep-rose);
+            margin: 0 0 15px 0;
+            font-size: 1.8rem;
+            font-style: italic;
+        }
+
+        .content p {
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        .instruction {
+            font-size: 0.85rem;
+            color: var(--premium-deep-rose);
+            margin-top: 15px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
+    <div id="petals-container"></div>
+
     <div id="envelope-wrapper">
         <div id="cover">
-            <h1 style="color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.1);">8 tháng 3</h1>
-            <button class="btn-open" onclick="openCard()">Chạm để mở</button>
+            <h1>Tặng Cún xinh iu</h1>
+            <button class="btn-open" onclick="openCard()">Nhấn vô đây 👉👈</button>
         </div>
 
         <div class="card" id="mainCard">
-            <div class="gallery-container">
-                <div class="slide"><img src="anh1.jpg" alt="Ảnh 1"></div>
-                <div class="slide"><img src="anh2.jpg" alt="Ảnh 2"></div>
-                <div class="slide"><img src="anh3.jpg" alt="Ảnh 3"></div>
-                <div class="slide"><img src="anh4.jpg" alt="Ảnh 4"></div>
+            <div class="gallery-container" id="gallery">
+                <div class="slide"><img src="anh1.jpg" alt="kỉ niệm Mộc Châu"></div>
+                <div class="slide"><img src="anh2.jpg" alt="Vườn cải nắng vàng"></div>
+                <div class="slide"><img src="anh3.jpg" alt="Hội An nè"></div>
+                <div class="slide"><img src="anh4.jpg" alt="Bọn mình nè"></div>
             </div>
             
             <div class="content">
-                <h2>Happy Women's Day</h2>
+                <h2>Chúc mừng 8 tháng 3</h2>
                 <p>Nhân ngày 8/3 chúc em luôn xinh đẹp, thuận lợi trong công việc và luôn vui vẻ trong cuộc sống nha ❤️</p>
-                <div class="instruction">Vuốt sang bên phải ik 🐱 </div>
+                <div class="instruction">Vuốt sang bên phải nha 🤠</div>
             </div>
         </div>
     </div>
@@ -170,7 +263,89 @@
         function openCard() {
             document.getElementById('cover').classList.add('hidden');
             document.getElementById('mainCard').classList.add('open');
+            
+            // Bắt đầu hiệu ứng cánh hoa rơi sau khi mở
+            startPetalFall();
         }
+
+        const petalsContainer = document.getElementById('petals-container');
+        const totalPetals = 40; // Số lượng cánh hoa tối đa cùng lúc
+        const petalEmojis = ['🌸', '🌷', '🌹', '💖']; // Có thể thay bằng ảnh PNG nhỏ
+
+        // Hàm tạo một cánh hoa ngẫu nhiên
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            const emoji = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+            petal.textContent = emoji;
+
+            // Cài đặt ngẫu nhiên: kích thước, vị trí, thời gian rơi
+            const size = Math.random() * 20 + 10; // 10px to 30px
+            petal.style.fontSize = `${size}px`;
+            petal.style.left = `${Math.random() * 100}%`;
+            const fallDuration = Math.random() * 5 + 5; // 5s to 10s
+            petal.style.animationDuration = `${fallDuration}s`;
+            petal.style.opacity = Math.random() * 0.5 + 0.3; // 0.3 to 0.8
+            
+            // Thêm góc xoay ngẫu nhiên
+            const randomRotate = Math.random() * 360;
+            petal.style.transform += `rotate(${randomRotate}deg)`;
+
+            petalsContainer.appendChild(petal);
+
+            // Xóa cánh hoa khi animation kết thúc
+            petal.addEventListener('animationend', function() {
+                petal.remove();
+            });
+        }
+
+        // Hàm bắt đầu hiệu ứng rơi cánh hoa liên tục
+        function startPetalFall() {
+            // Tạo một vài cánh hoa ngay lập tức để cảm nhận hiệu ứng
+            for (let i = 0; i < 10; i++) {
+                createPetal();
+            }
+
+            // Liên tục tạo cánh hoa mới
+            setInterval(() => {
+                if (petalsContainer.childElementCount < totalPetals) {
+                    createPetal();
+                }
+            }, 300); // Mỗi 300ms tạo một cánh
+        }
+
+        // Thêm hiệu ứng tương tác nhẹ khi kéo chuột (mô phỏng vuốt)
+        const gallery = document.getElementById('gallery');
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        gallery.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            gallery.classList.add('active');
+            startX = e.pageX - gallery.offsetLeft;
+            scrollLeft = gallery.scrollLeft;
+            gallery.style.cursor = 'grabbing';
+        });
+        gallery.addEventListener('mouseleave', () => {
+            isDragging = false;
+            gallery.classList.remove('active');
+            gallery.style.cursor = 'grab';
+        });
+        gallery.addEventListener('mouseup', () => {
+            isDragging = false;
+            gallery.classList.remove('active');
+            gallery.style.cursor = 'grab';
+        });
+        gallery.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - gallery.offsetLeft;
+            const walk = (x - startX) * 2; // Tốc độ cuộn
+            gallery.scrollLeft = scrollLeft - walk;
+        });
+
     </script>
 </body>
 </html>
